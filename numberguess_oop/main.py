@@ -12,7 +12,7 @@ def main():
     difficulty = Difficulty()
     previousGuesses = PreviousGuesses()
     username = input("What is your username? ")
-    highscores = Highscores(db, username)
+    highscores = Highscores(db, username, difficulty)
     game = Game(guess, previousGuesses, highscores, difficulty)
     game.run()
 main()

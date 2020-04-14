@@ -3,7 +3,7 @@ import random
 class Difficulty:
 
     input = ''
-    value = 0
+    value = 1
     valid = False
     random_number = random.randint(0, 100)
     min_max = list(range(0, 100))
@@ -11,7 +11,7 @@ class Difficulty:
 
     def reset_difficulty(self):
         self.input = ''
-        self.value = 0
+        self.value = 1
         self.valid = False
 
     def set_difficulty(self, input_question="What difficulty would you like to play at? Press 1 for Easy, press 2 for Medium, or press 3 for Hard " ):
