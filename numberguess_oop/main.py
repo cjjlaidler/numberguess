@@ -14,9 +14,9 @@ db = TinyDB('highscores.json')
 
 def main():
     app = QtWidgets.QApplication([])
-    username_window = UsernameWindow()
-    username_window.show()
-    game_window = GameWindow(username_window.username)
+    # username_window = UsernameWindow()
+    # username_window.show()
+    game_window = GameWindow()
     game_window.show()
     sys.exit(app.exec_())
 
