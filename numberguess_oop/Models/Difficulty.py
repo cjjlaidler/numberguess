@@ -9,6 +9,9 @@ class Difficulty:
     min_max = list(range(0, 100))
     count = 10
 
+    def __init__(self, gameMessage):
+      self.gameMessage = gameMessage
+
     def reset_difficulty(self):
         self.input = ''
         self.value = 1
@@ -18,6 +21,8 @@ class Difficulty:
         self.reset_difficulty()
 
         while (not self.valid):
+           self.gameMessage.setText(input_question)
+           self.gameMessage.repaint()
            self.input = input(input_question)
            self.validate_difficulty()
 

@@ -14,19 +14,21 @@ db = TinyDB('highscores.json')
 
 def main():
     app = QtWidgets.QApplication([])
-    # username_window = UsernameWindow()
-    # username_window.show()
-    game_window = GameWindow()
-    game_window.show()
-    sys.exit(app.exec_())
+
+    gameMessage = QtWidgets.QLabel('Welcome to Number Guess')
 
 
-    guess = Guess()
-    difficulty = Difficulty()
+    guess = Guess(gameMessage)
+    difficulty = Difficulty(gameMessage)
     previous_guesses = PreviousGuesses()
 
-    highscores = Highscores(db, username_window, difficulty)
-    game = Game(guess, previous_guesses, highscores, difficulty)
+    highscores = Highscores(db, 'chris', difficulty)
+    game = Game(guess, previous_guesses, highscores, difficulty, gameMessage)
+    # username_window = UsernameWindow()
+    # username_window.show()
+    game_window = GameWindow(game, gameMessage)
+    game_window.show()
+    sys.exit(app.exec_())
     # game.run()
 
 main()

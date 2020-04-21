@@ -1,27 +1,28 @@
 from PySide2 import QtCore, QtWidgets, QtGui
+from PySide2.QtCore import QObject, SIGNAL
+
 
 class GameWindow(QtWidgets.QWidget):
 
-    def __init__(self):
-        super().__init__()
-        self.setMinimumSize(200, 300)
-        self.setWindowTitle('Number Guess')
-        self.menubar = QtWidgets.QMenuBar(self)
-        self.fileMenu = self.menubar.addMenu('File')
-        def start_new_game(self):
-        	print('start game')
-        self.newGame = QtWidgets.QAction('New Game', self)
-        self.newGame.setShortcut('Ctrl+N')
-        self.newGame.setStatusTip('Start a new game')
-        self.newGame.triggered(start_new_game(self))
+	def __init__(self, game, gameMessage):
+		super().__init__()
+		self.setMinimumSize(200, 300)
+		self.setWindowTitle('Number Guess')
+		menubar = QtWidgets.QMenuBar(self)
+		fileMenu = menubar.addMenu('File')
 
+		def start_new_game():
+			game.run()
 
-        self.fileMenu.addAction(self.newGame)
-       
-        self.username = ''
-        self.text = QtWidgets.QLabel('Welcome to Number Guess')
-        self.text.setAlignment(QtCore.Qt.AlignCenter)
-        self.layout = QtWidgets.QVBoxLayout()
-        self.layout.addWidget(self.text)
-        self.setLayout(self.layout)
+		newGame = QtWidgets.QAction('New Game', self)
+		newGame.setShortcut('Ctrl+N')
+		newGame.setStatusTip('Start a new game')
+		QObject.connect(newGame, SIGNAL('triggered()'), start_new_game)
 
+		fileMenu.addAction(newGame)
+
+		username = ''
+		gameMessage.setAlignment(QtCore.Qt.AlignCenter)
+		layout = QtWidgets.QVBoxLayout()
+		layout.addWidget(gameMessage)
+		self.setLayout(layout)

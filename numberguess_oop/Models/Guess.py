@@ -4,7 +4,8 @@ class Guess:
     value = 0
     valid = False
     
-    def __init__(self, count=10):
+    def __init__(self, gameMessage, count=10):
+        self.gameMessage = gameMessage
         self.count = count
 
     def reset_value(self):
@@ -18,6 +19,8 @@ class Guess:
         self.value = 0
         self.valid = False
         while(not self.valid):
+            self.gameMessage.setText(input_message)
+            self.gameMessage.repaint()
             self.input = input(input_message)
             self.validate_input()
         self.value = int(self.input)
